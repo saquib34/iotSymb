@@ -199,7 +199,7 @@ const IoTLanding = () => {
           </h1>
           <div className="overflow-hidden">
             <p className="text-lg sm:text-xl lg:text-2xl mt-4 text-cyan-300/80">
-              {["February 13, 2025", "•", "Future of Connected Intelligence"].map((text, i) => (
+              {["February 7, 2025", "•", "Future of Connected Intelligence"].map((text, i) => (
                 <span key={i} className="subtitle-parts inline-block mx-2">{text}</span>
               ))}
             </p>
