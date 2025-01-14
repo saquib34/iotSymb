@@ -12,7 +12,7 @@
   "dependencies": {
     "@remotion/cli": "4.0.246",
     "framer-motion": "6.5.1",
-    "gsap": "3.12.2",
+    "gsap": "^3.12.5",
     "lucide-react": "0.469.0",
     "react": "17.0.2",
     "react-anime": "4.1.1",
