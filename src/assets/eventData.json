@@ -1,0 +1,63 @@
+[
+    {
+      "name": "INTBOT '25 Project Presentation",
+      "details": "Showcase your innovative IoT projects and compete for exciting prizes at the INTBOT '25 Project Presentation event. This event provides a platform for talented engineers and developers to present their cutting-edge IoT solutions and connect with industry experts.",
+      "date": "June 1, 2025",
+      "image": "intbot_event.jpg",
+      "convener": "DR.K. RAJA",
+      "facultyCoordinator": "Ms.M.SenhaPriya",
+      "studentCoordinator": "Bharath Raj (9176099810)",
+      "registrationFee": 100,
+      "registrationLink": "intbot_2k25",
+      "naacGrade": "A++",
+      "venue": "SRM University, Ramapuram, Chennai",
+      "teamSize": "1-3",
+      "about": "The INTBOT '25 Project Presentation event is a prestigious showcase of innovative IoT projects developed by talented engineering students. Participants will have the opportunity to demonstrate their problem-solving abilities, technical expertise, and creative thinking in the field of Internet of Things.",
+      "highlights": "Exciting cash prizes, networking with industry leaders, and the chance to showcase your work on a national platform."
+    },
+    {
+      "name": "Techno Connect",
+      "details": "Techno Connect is a dynamic event that brings together technical minds from across the country. Explore the latest advancements in technology, engage in thought-provoking discussions, and connect with peers who share your passion for innovation.",
+      "date": "May 15, 2025",
+      "image": "techno_connect.jpg",
+      "convener": "DR.K. RAJA",
+      "facultyCoordinator": "Dr.S.Revathi",
+      "studentCoordinator": "Yamini (97512 91856)",
+      "registrationFee": 100,
+      "registrationLink": "intbot_2k25",
+      "venue": "SRM University, Ramapuram, Chennai",
+      "teamSize": "1-3",
+      "about": "Techno Connect is a platform for technical enthusiasts to showcase their talents, learn from industry experts, and network with like-minded individuals. Participate in engaging workshops, panel discussions, and technical demonstrations to expand your knowledge and connect with the vibrant tech community.",
+      "highlights": "Hands-on workshops, industry-led panel discussions, and opportunities to collaborate on innovative projects."
+    },
+    {
+      "name": "WEBDEV BRACKETS",
+      "details": "WEBDEV BRACKETS is a captivating event that celebrates the intersection of design and functionality in web development. Showcase your web development skills, learn from industry pioneers, and compete to create the most visually stunning and user-friendly websites.",
+      "date": "July 1, 2025",
+      "image": "webdev_brackets.jpg",
+      "convener": "DR.K. RAJA",
+      "facultyCoordinator": "Dr.S.REVATHY",
+      "studentCoordinator": "SHRIKRISHNA (9840238122)",
+      "registrationFee": 100,
+      "registrationLink": "intbot_2k25",
+      "venue": "SRM University, Ramapuram, Chennai",
+      "teamSize": "1-3",
+      "about": "WEBDEV BRACKETS is a comprehensive event that explores the art of web development. Participate in workshops, coding challenges, and design competitions to hone your skills and showcase your creativity. Connect with industry experts, learn about the latest web technologies, and be inspired to push the boundaries of what's possible in the digital realm.",
+      "highlights": "Cash prizes for the best-designed and most functional websites, networking with industry leaders, and the opportunity to showcase your web development prowess."
+    },
+    {
+      "name": "Intellect Summit",
+      "details": "Intellect Summit is a prestigious event that celebrates the art of academic research and paper presentation. Aspiring scholars and researchers will have the opportunity to showcase their groundbreaking work, engage in thought-provoking discussions, and connect with a community of intellectuals.",
+      "date": "August 1, 2025",
+      "image": "intellect_summit.jpg",
+      "convener": "DR.K. RAJA",
+      "facultyCoordinator": "Dr.J.Jospin JEYA",
+      "studentCoordinator": "SURAJ (8520967667)",
+      "registrationFee": 100,
+      "registrationLink": "intbot_2k25",
+      "venue": "SRM University, Ramapuram, Chennai",
+      "teamSize": "2-3",
+      "about": "Intellect Summit is a premier event that celebrates the pursuit of academic excellence. Participants will have the opportunity to present their research papers, engage in stimulating discussions with peers and industry experts, and expand their knowledge in a wide range of fields. This event is a unique platform for aspiring scholars to showcase their intellectual prowess and contribute to the advancement of academic discourse.",
+      "highlights": "Cash prizes for the best research papers, networking with renowned academics, and the chance to publish your work in a reputable journal."
+    }
+  ]
