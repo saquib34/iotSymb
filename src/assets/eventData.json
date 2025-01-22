@@ -59,5 +59,20 @@
       "teamSize": "2-3",
       "about": "Intellect Summit is a premier event that celebrates the pursuit of academic excellence. Participants will have the opportunity to present their research papers, engage in stimulating discussions with peers and industry experts, and expand their knowledge in a wide range of fields. This event is a unique platform for aspiring scholars to showcase their intellectual prowess and contribute to the advancement of academic discourse.",
       "highlights": "Cash prizes for the best research papers, networking with renowned academics, and the chance to publish your work in a reputable journal."
+    },
+    {
+      "name": "Bits & Bytes",
+      "details": "The Ultimate Tech Quiz Challenge – Unleash your inner tech genius and compete with the best minds in the ultimate showdown of knowledge, logic, and innovation. Dive into the world of technology, coding, and digital mastery, and prove you have what it takes to claim the champion's title!",
+      "date": "February 7, 2025",
+      "image": "intellect_summit.jpg",
+      "convener": "DR.K. RAJA",
+      "facultyCoordinator": "Ms.M.Sneha Priya",
+      "studentCoordinator": "Kalaivizhi (6381328559)", Guru Priya(9003290788),
+      "registrationFee": 100,
+      "registrationLink": "intbot_2k25",
+      "venue": "SRM University, Ramapuram, Chennai",
+      "teamSize": "1-2",
+      "about": "The Ultimate Tech Quiz Challenge – Unleash your inner tech genius and compete with the best minds in the ultimate showdown of knowledge, logic, and innovation. Dive into the world of technology, coding, and digital mastery, and prove you have what it takes to claim the champion's title!",
+      "highlights": "Cash prizes for the best research papers, networking with renowned academics, and the chance to publish your work in a reputable journal."
     }
   ]
