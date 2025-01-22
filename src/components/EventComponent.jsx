@@ -84,7 +84,7 @@ const EventComponent = () => {
             >
               <div className="relative h-56">
                 <img
-                  src="/api/placeholder/400/300"
+                  src={`/${event.image}`}
                   alt={event.name}
                   className="w-full h-full object-cover"
                 />
