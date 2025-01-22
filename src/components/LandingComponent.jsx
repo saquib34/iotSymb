@@ -185,7 +185,7 @@ const IoTLanding = () => {
         {/* Title */}
         <div className="absolute top-24 w-full text-center z-10 px-4">
           <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold relative">
-            {Array.from("IoT Symposium 2025").map((char, i) => (
+            {Array.from("IntBot 2025").map((char, i) => (
               <span 
                 key={i} 
                 className="char-text inline-block relative"

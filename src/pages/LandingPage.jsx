@@ -24,7 +24,7 @@ const LandingPage = () => {
       </section>
 
 
-      <section className="relative min-h-screen" id="contactus">
+      <section className="relative min-h-screen" id="contact us">
       <ContactForm />
       </section>
       <section className="relative z-[40] ">

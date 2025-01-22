@@ -75,7 +75,9 @@ const EventComponent = () => {
           {eventData.map((event, index) => (
             <motion.div
               key={index}
-              className="group bg-gray-800/50 backdrop-blur-xl rounded-2xl overflow-hidden shadow-xl border border-gray-700 transform transition-all hover:scale-[1.02]"
+              className="group bg-blue-900/50 backdrop-blur-xl rounded-2xl overflow-hidden shadow-xl border border-gray-700 transform transition-all hover:scale-[1.02]"
+
+
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
