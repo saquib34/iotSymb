@@ -12,10 +12,10 @@ const LandingPage = () => {
       <section className="relative z-10">
         <IoTLanding />
       </section>
-      <section className="relative z-20">
+      <section className="relative z-20 id="events">
         <EventComponent />
       </section>
-      <section className="relative z-[50]">
+      <section className="relative z-[50] id="about">
         <DepartmentSection />
       </section>
       <section className="relative z-[40]">
