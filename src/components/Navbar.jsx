@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navItems = ['Events', 'WorkShops', 'About', 'ContctUs'];
+  const navItems = ['Events', 'WorkShops', 'About', 'ContactUs'];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50  backdrop-blur-md border-b border-cyan-500/20">

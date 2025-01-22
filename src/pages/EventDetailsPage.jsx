@@ -355,14 +355,24 @@ const handleSubmit = async (e) => {
                         onChange={handleNumParticipantsChange}
                         className="w-full bg-gray-700/50 backdrop-blur-sm border border-gray-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       >
-                        {Array.from(
-                          { length: parseInt(event.teamSize.split('-')[1]) },
-                          (_, i) => (
-                            <option key={i + 1} value={i + 1}>
-                              {i + 1} {i === 0 ? 'Member' : 'Members'}
-                            </option>
-                          )
-                        )}
+                        
+                        <>
+  {event.teamSize === "1" ? (
+    <option key={1} value={1}>
+      1 Member
+    </option>
+  ) : (
+    Array.from(
+      { length: parseInt(event.teamSize.split('-')[1]) },
+      (_, i) => (
+        <option key={i + 1} value={i + 1}>
+          {i + 1} {i === 0 ? 'Member' : 'Members'}
+        </option>
+      )
+    )
+  )}
+</>
+
                       </select>
                     </label>
 
@@ -583,7 +593,8 @@ const handleSubmit = async (e) => {
         {/* Other Events Section */}
         
       </div>
-      <Footer />
+      <Footer/>
+   
     </div>
   );
 };
