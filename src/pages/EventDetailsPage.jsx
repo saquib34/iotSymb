@@ -21,6 +21,7 @@ const EventDetailsPage = () => {
   
   // Form state
   const [formStep, setFormStep] = useState(1);
+  const [rulesAccepted, setRulesAccepted] = useState(false);
   const [numParticipants, setNumParticipants] = useState(initialParticipants);
   const [formData, setFormData] = useState([
     {
@@ -40,7 +41,7 @@ const EventDetailsPage = () => {
   const [transactionId, setTransactionId] = useState('');
   const [uploading, setUploading] = useState(false);
   const [showWhatsAppLink, setShowWhatsAppLink] = useState(false);
-  const whatsappLink = "https://chat.whatsapp.com/JAlIQaAJRBF0Bo50yvXO6F"; // Replace with actual link
+  const whatsappLink = "https://chat.whatsapp.com/JAlIQaAJRBF0Bo50yvXO6F";
 
   // Filter other events
   const otherEvents = useMemo(() => {
@@ -59,7 +60,6 @@ const EventDetailsPage = () => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline();
 
-      // Header animation
       if (headerRef.current) {
         tl.from(headerRef.current, {
           y: -50,
@@ -69,7 +69,6 @@ const EventDetailsPage = () => {
         });
       }
 
-      // Details section animation
       if (detailsRef.current?.children) {
         tl.from(detailsRef.current.children, {
           y: 30,
@@ -80,7 +79,6 @@ const EventDetailsPage = () => {
         }, "-=0.4");
       }
 
-      // Form animation
       if (formRef.current) {
         tl.from(formRef.current, {
           x: 50,
@@ -90,7 +88,6 @@ const EventDetailsPage = () => {
         }, "-=0.6");
       }
 
-      // Cards animation
       if (cardsRef.current && cardElements.current.length > 0) {
         cardElements.current.forEach((card, index) => {
           if (card) {
@@ -117,14 +114,12 @@ const EventDetailsPage = () => {
     };
   }, [otherEvents.length]);
 
-  // Handle form input changes
   const handleInputChange = (index, e) => {
     const updatedFormData = [...formData];
     updatedFormData[index][e.target.name] = e.target.value;
     setFormData(updatedFormData);
   };
 
-  // Handle participant number changes
   const handleNumParticipantsChange = (e) => {
     const num = parseInt(e.target.value, 10);
     setNumParticipants(num);
@@ -137,14 +132,12 @@ const EventDetailsPage = () => {
         collegeId: '',
       }))
     );
-    // Reset files array for new number of participants
     setFiles(prev => ({
       ...prev,
       idCards: Array(num).fill(null)
     }));
   };
 
-  // Handle file uploads
   const handleFileChange = (e, index, type) => {
     const file = e.target.files[0];
     if (file) {
@@ -164,94 +157,83 @@ const EventDetailsPage = () => {
     }
   };
 
-  // Form submission
-
-// Add this helper function at the top level of your component
-const convertFileToBase64 = (file) => {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-};
-
-// Replace your existing handleSubmit with this version
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  setUploading(true);
-
-  const SCRIPT_URL = config.GOOGLE_SCRIPT_URL;
-
-  try {
-    // First convert all files to base64
-    const idCardPromises = files.idCards.map(file => 
-      file ? convertFileToBase64(file) : Promise.resolve('')
-    );
-    
-    const transactionPromise = files.transactionScreenshot 
-      ? convertFileToBase64(files.transactionScreenshot)
-      : Promise.resolve('');
-
-    // Wait for all file conversions to complete
-    const [idCardImages, transactionImage] = await Promise.all([
-      Promise.all(idCardPromises),
-      transactionPromise
-    ]);
-
-    // Prepare submission data
-    const submissionData = {
-      participants: formData.map((participant, index) => ({
-        ...participant,
-        eventName: event.name,
-        registrationDate: new Date().toISOString(),
-        idCardImage: idCardImages[index],
-      })),
-      transactionId: transactionId,
-      transactionImage: transactionImage,
-      totalAmount: event.registrationFee * numParticipants
-    };
-
-    console.log('Submitting data:', submissionData); // Debug log
-
-    // Make the fetch request
-    const response = await fetch(SCRIPT_URL, {
-      redirect: 'follow',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
-      },
-      mode: 'cors',
-      body: JSON.stringify(submissionData)
+  const convertFileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
     });
+  };
 
-    // Since we're using no-cors, assume success if we get here
-    setShowWhatsAppLink(true);
-    alert('Registration successful! Please join the WhatsApp group for further updates.');
-    
-    // Reset form
-    setFormStep(1);
-    setNumParticipants(initialParticipants);
-    setFormData([{
-      name: '',
-      email: '',
-      phone: '',
-      college: '',
-      collegeId: '',
-    }]);
-    setFiles({
-      idCards: [],
-      transactionScreenshot: null
-    });
-    setTransactionId('');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setUploading(true);
 
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Registration failed. Please try again: ' + error.message);
-  } finally {
-    setUploading(false);
-  }
-};
+    const SCRIPT_URL = config.GOOGLE_SCRIPT_URL;
+
+    try {
+      const idCardPromises = files.idCards.map(file => 
+        file ? convertFileToBase64(file) : Promise.resolve('')
+      );
+      
+      const transactionPromise = files.transactionScreenshot 
+        ? convertFileToBase64(files.transactionScreenshot)
+        : Promise.resolve('');
+
+      const [idCardImages, transactionImage] = await Promise.all([
+        Promise.all(idCardPromises),
+        transactionPromise
+      ]);
+
+      const submissionData = {
+        participants: formData.map((participant, index) => ({
+          ...participant,
+          eventName: event.name,
+          registrationDate: new Date().toISOString(),
+          idCardImage: idCardImages[index],
+        })),
+        transactionId: transactionId,
+        transactionImage: transactionImage,
+        totalAmount: event.registrationFee * numParticipants
+      };
+
+      const response = await fetch(SCRIPT_URL, {
+        redirect: 'follow',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        mode: 'cors',
+        body: JSON.stringify(submissionData)
+      });
+
+      setShowWhatsAppLink(true);
+      alert('Registration successful! Please join the WhatsApp group for further updates.');
+      
+      setFormStep(1);
+      setNumParticipants(initialParticipants);
+      setFormData([{
+        name: '',
+        email: '',
+        phone: '',
+        college: '',
+        collegeId: '',
+      }]);
+      setFiles({
+        idCards: [],
+        transactionScreenshot: null
+      });
+      setTransactionId('');
+      setRulesAccepted(false);
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Registration failed. Please try again: ' + error.message);
+    } finally {
+      setUploading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
@@ -290,13 +272,8 @@ const handleSubmit = async (e) => {
                   <Users className="w-5 h-5 mr-3 text-purple-400" />
                   <span>Team: {event.teamSize}</span>
                 </div>
-                {/*<div className="flex items-center text-gray-300">
-                  <Award className="w-5 h-5 mr-3 text-purple-400" />
-                  <span>Prize Pool: ₹{event.prizePool}</span>
-                </div>*/}
               </div>
 
-              {/* Event details sections */}
               <div className="space-y-6">
                 {/* About Section */}
                 <div className="bg-gray-700/30 rounded-xl p-6 hover:bg-gray-700/40 transition-colors">
@@ -306,6 +283,23 @@ const handleSubmit = async (e) => {
                   </h3>
                   <p className="text-gray-300 leading-relaxed">{event.about}</p>
                 </div>
+                {/* Rules Section */}
+                <div className="bg-gray-700/30 rounded-xl p-6 hover:bg-gray-700/40 transition-colors">
+                  <h3 className="flex items-center text-lg font-semibold mb-3">
+                    <Info className="w-5 h-5 mr-2 text-purple-400" />
+                    Rules & Guidelines
+                  </h3>
+                  <ul className="space-y-2 text-gray-300">
+                    {event.rules.map((rule, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="mr-2">•</span>
+                        <span className="leading-relaxed">{rule}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                
 
                 {/* Event Fee Info */}
                 <div className="bg-gray-700/30 rounded-xl p-6 hover:bg-gray-700/40 transition-colors">
@@ -355,31 +349,42 @@ const handleSubmit = async (e) => {
                         onChange={handleNumParticipantsChange}
                         className="w-full bg-gray-700/50 backdrop-blur-sm border border-gray-600 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                       >
-                        
-                        <>
-  {event.teamSize === "1" ? (
-    <option key={1} value={1}>
-      1 Member
-    </option>
-  ) : (
-    Array.from(
-      { length: parseInt(event.teamSize.split('-')[1]) },
-      (_, i) => (
-        <option key={i + 1} value={i + 1}>
-          {i + 1} {i === 0 ? 'Member' : 'Members'}
-        </option>
-      )
-    )
-  )}
-</>
-
+                        {event.teamSize === "1" ? (
+                          <option key={1} value={1}>
+                            1 Member
+                          </option>
+                        ) : (
+                          Array.from(
+                            { length: parseInt(event.teamSize.split('-')[1]) },
+                            (_, i) => (
+                              <option key={i + 1} value={i + 1}>
+                                {i + 1} {i === 0 ? 'Member' : 'Members'}
+                              </option>
+                            )
+                          )
+                        )}
                       </select>
                     </label>
+
+                    {/* Rules Acceptance Checkbox */}
+                    <div className="flex items-center space-x-2 mb-4">
+                      <input
+                        type="checkbox"
+                        id="rules-acceptance"
+                        checked={rulesAccepted}
+                        onChange={(e) => setRulesAccepted(e.target.checked)}
+                        className="w-4 h-4 rounded border-gray-600 text-purple-500 focus:ring-purple-500"
+                      />
+                      <label htmlFor="rules-acceptance" className="text-gray-300 text-sm">
+                        I have read and agree to the event rules and guidelines
+                      </label>
+                    </div>
 
                     <button
                       type="button"
                       onClick={() => setFormStep(2)}
-                      className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-xl transition-all transform hover:scale-[1.02] hover:shadow-lg"
+                      disabled={!rulesAccepted}
+                      className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-semibold py-3 px-6 rounded-xl transition-all transform hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Next Step
                     </button>
@@ -397,13 +402,13 @@ const handleSubmit = async (e) => {
                       </h3>
                       <div className="space-y-4">
                         <p className="text-gray-300">
-                          Total Amount: ₹{event.registrationFee }
+                          Total Amount: ₹{event.registrationFee}
                         </p>
                         
                         {/* QR Code Container */}
                         <div className="bg-white p-4 rounded-lg w-48 mx-auto">
                           <img
-                            src="/qr-code.jpg" // Replace with your QR code image path
+                            src="/qr-code.jpg"
                             alt="Payment QR Code"
                             className="w-full"
                           />
@@ -589,12 +594,8 @@ const handleSubmit = async (e) => {
             </div>
           </div>
         </div>
-
-        {/* Other Events Section */}
-        
       </div>
       <Footer/>
-   
     </div>
   );
 };
