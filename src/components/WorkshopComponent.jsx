@@ -30,7 +30,7 @@ const WorkShopComponent = () => {
 
   const handleEventClick = (event) => {
     if (React.startTransition) {
-      React.startTransition(() => navigate(`/event-details/${event.name}`, { state: event }));
+      React.startTransition(() => navigate(`/Workshop-details/${event.name}`, { state: event }));
     } else {
       navigate(`/event-details/${event.name}`, { state: event });
     }
