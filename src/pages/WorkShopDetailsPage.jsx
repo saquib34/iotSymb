@@ -359,9 +359,7 @@ const WorkDetailsPage = () => {
                         onChange={(e) => setRulesAccepted(e.target.checked)}
                         className="w-4 h-4 rounded border-gray-600 text-purple-500 focus:ring-purple-500"
                       />
-                      <label htmlFor="rules-acceptance" className="text-gray-300 text-sm">
-                        I have read and agree to the event rules and guidelines
-                      </label>
+                      
                     </div>
 
                     <button
